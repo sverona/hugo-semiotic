@@ -1,17 +1,30 @@
 {{ define "main" }}
-{{ if eq .Type "blog" }}{{ if not .Params.menu }}
-<h1>{{ .Title }}</h1>
-<p>
-  <i>
-    <time datetime='{{ .Date.Format "2006-01-02" }}' pubdate>
-      {{ .Date.Format (default "02 Jan, 2006" .Site.Params.dateFormat) }}
-    </time>
-  </i>
-</p>
+{{ if or (eq .Type "blog") (eq .Type "post") }}{{ if not .Params.menu }}
+<header id="front-matter">
+<nav id="sequence-nav">
+  <a id="prev"></a>
+  <span class="sequence-name"></span>
+  <a id="next"></a>
+</nav>
+<div id="metadata">
+  <ul id="page-metadata-block">
+    <li id="publish-date">
+      <time datetime='{{ .Date.Format "2006-01-02" }}' pubdate>
+        {{ .Date.Format "January 2, 2006" }}
+      </time>
+    </li>
+    <li id="completion-status"><em>{{ .Params.completion_status }}</em></li>
+    <li id="epistemic-status"><em>{{ .Params.epistemic_status }}</em></li>
+  </ul>
+  <h1>{{ .Title }}</h1>
+  <em id="page-description">{{ .Description }}</em>
+  <span id="page-tags"></span>
+</div>
+</header>
 {{ end }}{{ end }}
-<content>
+<article>
   {{ .Content }}
-</content>
+</article>
 <p>
   {{ range (.GetTerms "tags") }}
   <a href="{{ .Permalink }}">#{{ .LinkTitle }}</a>
