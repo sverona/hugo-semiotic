@@ -90,14 +90,24 @@ article {
 
 .fullwidth figure {
   margin-inline: 20px;
+  display: inline-block;
 }
 
 .flex {
   display: flex;
+  align-items: center;
 }
 
 input[type="checkbox"].margin-toggle {
   display: none;
+}
+
+figcaption {
+  font-size: smaller;
+}
+
+figcaption p:first-child {
+  display: inline;
 }
 
 .margin-toggle:checked + .sidenote,
@@ -152,7 +162,11 @@ input[type="checkbox"].margin-toggle {
 
   .marginfigure {
     float: right;
-    margin-inline: 0;
     width: calc(var(--sidenote-proportion) * var(--article-width));
+  }
+
+  figure.marginfigure,
+  .marginfigure figure {
+    margin-inline: 0;
   }
 }
