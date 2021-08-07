@@ -40,8 +40,10 @@ article {
 .marginnote-label:nth-of-type(3)::before,
 .marginnote:nth-of-type(3)::before
 {
-  font-size: 0.7rem;
-  vertical-align: top;
+  font-size: smaller;
+  position: relative;
+  top: -0.5rem;
+  font-variant-numeric: tabular-nums;
 
   font-weight: normal;
 }
