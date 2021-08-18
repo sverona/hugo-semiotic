@@ -1,3 +1,9 @@
-{{ $sidenoteDomIdSuffix := .Ordinal }}<label for="sidenote-{{.Page.File.UniqueID}}-{{ $sidenoteDomIdSuffix }}" class="margin-toggle sidenote-number"></label>
-<input type="checkbox" id="sidenote-{{.Page.File.UniqueID}}-{{ $sidenoteDomIdSuffix }}" class="margin-toggle"/>
+{{$ordinal := .Ordinal }}
+{{- with .Parent -}}
+<label for="sidenote-{{ .Ordinal }}-{{ $ordinal }}" class="margin-toggle sidenote-number"></label>
+<input type="checkbox" id="sidenote-{{ .Ordinal }}-{{ $ordinal }}" class="margin-toggle"/>
+{{- else -}}
+<label for="sidenote-{{ .Ordinal }}" class="margin-toggle sidenote-number"></label>
+<input type="checkbox" id="sidenote-{{ .Ordinal }}" class="margin-toggle"/>
+{{- end -}}
 <span class="sidenote">{{ .Inner }}</span>
