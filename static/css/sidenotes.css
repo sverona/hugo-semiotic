@@ -34,18 +34,13 @@ article {
 
 .sidenote-number,
 .sidenote-label,
-.sidenote::before,
 .marginnote-label:nth-of-type(2)::before,
 .marginnote:nth-of-type(2)::before,
 .marginnote-label:nth-of-type(3)::before,
 .marginnote:nth-of-type(3)::before
 {
-  font-size: smaller;
-  position: relative;
-  top: -0.5rem;
-  font-variant-numeric: tabular-nums;
-
-  font-weight: normal;
+  font-feature-settings: "sups" 1;
+  font-variant-position: super;
 }
 
 .sidenote-number::before,
