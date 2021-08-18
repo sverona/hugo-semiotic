@@ -27,41 +27,45 @@ article h4:before {
   color: #aaa;
 }
 
+.definition:before,
+.theorem:before,
+.lemma:before,
+.example:before,
+.proposition:before,
+.corollary:before {
+  font-weight: 600;
+  font-feature-settings: "smcp" 1, "c2sc" 1;
+  font-style: all-small-caps;
+}
+
 .definition:before {
   counter-increment: definition;
   content: "Definition " counter(definition) ".";
-  font-weight: bold;
-
 }
 
 .theorem:before {
   counter-increment: theorem;
   content: "Theorem " counter(theorem) ".";
-  font-weight: bold;
 }
 
 .lemma:before {
   counter-increment: lemma;
   content: "Lemma " counter(lemma) ".";
-  font-weight: bold;
 }
 
 .example:before {
   counter-increment: example;
   content: "Example " counter(example) ".";
-  font-weight: bold;
 }
 
 .proposition:before {
   counter-increment: proposition;
   content: "Proposition " counter(proposition) ".";
-  font-weight: bold;
 }
 
 .corollary:before {
   counter-increment: corollary;
   content: "Corollary " counter(corollary) ".";
-  font-weight: bold;
 }
 
 .proof {
@@ -102,7 +106,6 @@ article h4:before {
 .conjecture:before {
   counter-increment: conjecture;
   content: "Conjecture " counter(conjecture) ".";
-  font-weight: bold;
 }
 
 .proof:before {
