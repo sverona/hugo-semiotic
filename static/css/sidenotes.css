@@ -150,6 +150,8 @@ figcaption p:first-child {
 
   .sidenote,
   .marginnote,
+  .margin-toggle:checked + .sidenote,
+  .margin-toggle:checked + .marginnote,
   .note-toggle:checked + .sidenote,
   .note-toggle:checked + .marginnote {
     display: inline-block;
