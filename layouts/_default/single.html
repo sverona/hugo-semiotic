@@ -15,18 +15,24 @@
   </div>
 </nav>
 <div id="metadata">
+  <div>
+  {{ if (ne .CurrentSection.Title "Blogs") }}
+  <h3>
+    {{ .CurrentSection.Title }}
+  </h3>
+  {{ end }}
+  <h1>{{ .Title }}</h1>
+  <em id="page-description">{{ .Description }}</em>
+  </div>
   <ul id="page-metadata-block">
     <li id="publish-date">
       <time datetime='{{ .Date.Format "2006-01-02" }}' pubdate>
         {{ .Date.Format "January 2, 2006" }}
       </time>
     </li>
-    <li id="completion-status"><em>{{ .Params.completion_status }}</em></li>
-    <li id="epistemic-status"><em>{{ .Params.epistemic_status }}</em></li>
+    <li id="completion-status">completion status: <em>{{ .Params.completion_status }}</em></li>
+    <li id="epistemic-status">epistemic status: <em>{{ .Params.epistemic_status }}</em></li>
   </ul>
-  <h1>{{ .Title }}</h1>
-  <em id="page-description">{{ .Description }}</em>
-  <span id="page-tags"></span>
 </div>
 </header>
 {{ end }}{{ end }}
