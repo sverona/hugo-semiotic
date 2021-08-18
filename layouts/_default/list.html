@@ -1,5 +1,5 @@
 {{ define "main" }}
-<content>
+  <h1>{{ .Title }}</h1>
   {{ if .Data.Singular }}
   <h3 style="margin-bottom:0">Filtering for "{{ .Title }}"</h3>
   <small>
@@ -8,13 +8,12 @@
   {{ end }}
   <ul class="blog-posts">
     {{ range .Pages }}
-    <li>
-      <span>
-      <time datetime='{{ .Date.Format "2006-01-02" }}' pubdate>
-        {{ .Date.Format "January 2, 2006" }}
-      </time>
-      </span>
-      <a href="{{ .Permalink }}">{{ .Title }}</a>
+    <li class="blog-post">
+          <time datetime='{{ .Date.Format "2006-01-02" }}' pubdate>
+            {{ .Date.Format "January 2, 2006" }}
+          </time>
+        <h1><a href="{{ .Permalink }}">{{ .Title }}</a></h1>
+        <em>{{ .Params.description }}</em>
     </li>
     {{ else }}
     <li>
@@ -32,5 +31,4 @@
       </div>
     </small>
     {{ end }}
-</content>
 {{ end }}
