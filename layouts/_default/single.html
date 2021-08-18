@@ -17,7 +17,7 @@
 <div id="metadata">
   <div>
   {{ if (ne .CurrentSection.Title "Blogs") }}
-  <h3>
+  <h3 style="margin: 0">
     {{ .CurrentSection.Title }}
   </h3>
   {{ end }}
@@ -39,9 +39,10 @@
 <article>
   {{ .Content }}
 </article>
-<p>
-  {{ range (.GetTerms "tags") }}
-  <a href="{{ .Permalink }}">#{{ .LinkTitle }}</a>
-  {{ end }}
-</p>
+<div class="page-tags">
+    {{ range (.GetTerms "tags") }}
+      <a href="{{ .Permalink }}">{{ .LinkTitle }}</a>,
+    {{ end }}
+</div> 
+<hr />
 {{ end }}
