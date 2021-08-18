@@ -1,10 +1,18 @@
 {{ define "main" }}
-{{ if or (eq .Type "blog") (eq .Type "post") }}{{ if not .Params.menu }}
-<header id="front-matter">
+{{ if or (eq .Type "blog") (eq .Type "post") }}{{ if not .Params.menu }} <header id="front-matter">
 <nav id="sequence-nav">
-  <a id="prev"></a>
-  <span class="sequence-name"></span>
-  <a id="next"></a>
+  <div id="next-prev">
+  {{ if .NextInSection }} {{ with .NextInSection }}
+    <div id="next"><a href="{{.Permalink}}">{{ .Title }}</a></div>
+  {{ end }} {{ else }}
+    <div></div>
+  {{ end }}
+  {{ if .PrevInSection }} {{ with .PrevInSection }}
+    <div id="prev"><a href="{{.Permalink}}">{{ .Title }}</a></div>
+  {{ end }} {{ else }}
+    <div></div>
+  {{ end }}
+  </div>
 </nav>
 <div id="metadata">
   <ul id="page-metadata-block">
