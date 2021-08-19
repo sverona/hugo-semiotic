@@ -1,11 +1,47 @@
 {{ define "main" }}
-  <h1>{{ .Title }}</h1>
   {{ if .Data.Singular }}
   <h3 style="margin-bottom:0">Filtering for "{{ .Title }}"</h3>
   <small>
     <a href="{{ "/blog" | relURL }}">Remove filter</a>
   </small>
   {{ end }}
+  <header id="front-matter">
+<nav id="sequence-nav">
+  <div id="next-prev">
+  {{ if .NextInSection }} {{ with .NextInSection }}
+    <div id="next"><a href="{{.Permalink}}">{{ .Title }}</a></div>
+  {{ end }} {{ else }}
+    <div></div>
+  {{ end }}
+  {{ if .PrevInSection }} {{ with .PrevInSection }}
+    <div id="prev"><a href="{{.Permalink}}">{{ .Title }}</a></div>
+  {{ end }} {{ else }}
+    <div></div>
+  {{ end }}
+  </div>
+</nav>
+<div id="metadata">
+  <div>
+  {{ if (ne .CurrentSection.Title "Blogs") }}
+  {{ end }}
+  <h1>{{ .Title }}</h1>
+  <em id="page-description">{{ .Description }}</em>
+  </div>
+  <ul id="page-metadata-block">
+    <li id="publish-date">
+      <time datetime='{{ .Date.Format "2006-01-02" }}' pubdate>
+        {{ .Date.Format "January 2, 2006" }}
+      </time>
+    </li>
+    <li id="completion-status">completion status: <em>{{ .Params.completion_status }}</em></li>
+    <li id="epistemic-status">epistemic status: <em>{{ .Params.epistemic_status }}</em></li>
+  </ul>
+</div>
+</header>
+    <article>
+    {{ .Content }}
+    </article>
+
   <ul class="blog-posts">
     {{ range .Pages }}
     <li class="blog-post">
