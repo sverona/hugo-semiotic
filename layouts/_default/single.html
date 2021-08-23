@@ -40,10 +40,12 @@
 <article>
   {{ .Content }}
 </article>
+<!--
 <div class="page-tags">
     {{ range (.GetTerms "tags") }}
       <a href="{{ .Permalink }}">{{ .LinkTitle }}</a>,
     {{ end }}
 </div> 
+-->
 <hr />
 {{ end }}
