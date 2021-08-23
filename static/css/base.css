@@ -19,6 +19,9 @@ body > header {
   margin-bottom: 3.2rem;
 }
 
+table {
+  border-spacing: 2rem 0;
+}
 
 
 body > header > a {
