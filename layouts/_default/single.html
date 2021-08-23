@@ -1,5 +1,5 @@
 {{ define "main" }}
-{{ if or (eq .Type "blog") (eq .Type "post") }}{{ if not .Params.menu }} <header id="front-matter">
+{{ if not .Params.menu }} <header id="front-matter">
 <nav id="sequence-nav">
   <div id="next-prev">
   {{ if .NextInSection }} {{ with .NextInSection }}
@@ -35,7 +35,8 @@
   </ul>
 </div>
 </header>
-{{ end }}{{ end }}
+{{ end }}
+{{ .TableOfContents }}
 <article>
   {{ .Content }}
 </article>
