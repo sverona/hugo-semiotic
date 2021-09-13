@@ -20,7 +20,6 @@
   {{ end }}
   </div>
 </nav>
-<div id="metadata">
   <div>
   {{ if (ne .CurrentSection.Title "Blogs") }}
   {{ end }}
@@ -36,7 +35,6 @@
     <li id="completion-status">completion status: <em>{{ .Params.completion_status }}</em></li>
     <li id="epistemic-status">epistemic status: <em>{{ .Params.epistemic_status }}</em></li>
   </ul>
-</div>
 </header>
     <article>
     {{ .Content }}
@@ -48,7 +46,7 @@
           <time datetime='{{ .Date.Format "2006-01-02" }}' pubdate>
             {{ .Date.Format "January 2, 2006" }}
           </time>
-        <h1><a href="{{ .Permalink }}">{{ .Title }}</a></h1>
+        <h2 style="margin: 0"><a href="{{ .Permalink }}">{{ .Title }}</a></h2>
         <em>{{ .Params.description }}</em>
     </li>
     {{ else }}
