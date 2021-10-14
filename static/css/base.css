@@ -7,7 +7,7 @@
 }
 
 body {
-  font-family: 'Source Serif 4';
+  font-family: 'IBM Plex Sans', sans-serif;
   max-width: 900px;
   margin: auto;
   padding: 2ch;
@@ -21,6 +21,7 @@ body > header {
 }
 
 /* Brand */
+#toc h5,
 body > header > a {
   font-variant: all-small-caps;
   letter-spacing: .25rem;
@@ -41,8 +42,6 @@ body > header > nav ul li:not(:last-child)::after {
 }
 
 #toc {
-  border: 1px solid black;
-  background-color: #eee;
   float: right;
   min-width: 20ch;
   max-width: 30%;
@@ -58,36 +57,59 @@ html {
   line-height: 1.5;
 }
 
-/* ||| KaTeX specific styles */
-.katex {
-  /* Set math x-height to the same as body text. */
-  font-size: 110% !important;
+article h2:before,
+article h3:before,
+article h4:before {
+  color: #ec5766;
+  margin-right: 1ch;
 }
 
-a .katex-html {
-  line-height: 1;
+article h2:before {
+  content: '#';
 }
 
-/* ||| end KaTeX */
+article h3:before {
+  content: '##';
+}
+
+article h4:before {
+  content: '###';
+}
 
 b, strong {
   font-weight: 600;
 }
 
 h1, h2, h3, h4, h5, h6 {
-  font-weight: 500;
+  font-weight: 600;
 }
 
-main h2, main h3, main h4, main h5, main h6 {
-  font-weight: 400;
-
+main h1, main h2, main h3, main h4, main h5, main h6 {
   line-height: 1.3;
+
+  font-family: "IBM Plex Mono";
 }
 
+pre {
+  padding: 1rem;
+  border-radius: 1rem;
+}
+
+code {
+  font-family: "IBM Plex Mono";
+}
+
+#front-matter {
+  background-color: #fbdbdb;
+  box-shadow: 4px 4px #ec5766;
+  padding: 1rem;
+  margin-right: -1rem;
+  margin-left: -1rem;
+}
 
 #front-matter h1 {
   /* Article titles should not have space below them. */
-  margin-top: 6.4rem;
+  margin-top: 0;
   margin-bottom: 0;
   letter-spacing: 0;
 }
@@ -136,10 +158,6 @@ li p {
   margin: 0;
 }
 
-pre, code {
-  font-size: 95%;
-}
-
 ul.blog-posts,
 ul.blog-posts ul,
 ul.blog-posts ol {
@@ -157,6 +175,13 @@ ul.blog-posts ol li {
   margin-top: 3.2rem;
 }
 
+a {
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
 
 /* || end Typography */
 
@@ -167,13 +192,7 @@ main > header div ul {
 }
 
 a, a:visited {
-  color: #000;
-}
-
-hr {
-  border-color: #ccc;
-  border-style: solid;
-  border-width: 1px 0 0 0;
+  color: #d91e36;
 }
 
 /* || end Colors */
