@@ -1,7 +1,7 @@
 @import 'sidenotes.css';
 
 article {
-  counter-reset: sidenote lemma proposition example corollary section !important;
+  counter-reset: sidenote conjecture definition theorem lemma proposition example corollary section !important;
 }
 
 article > div:not(.proof):before {
@@ -13,7 +13,8 @@ article > div:not(.proof):before {
 
 article > div:not(.proof):not(#toc):not(.figure):not(.highlight) {
   padding: 1rem;
-  background-color: #eee;
+  background-color: #fbdbdb;
+  box-shadow: 4px 4px #d91e36;
   margin-block: 2rem;
 }
 
