@@ -1,43 +1,37 @@
 {{ define "main" }}
 {{ if not .Params.menu }} <header id="front-matter">
+  <nav>
+    <div id="current-section">
+      <a href="{{.CurrentSection.Permalink}}">{{.CurrentSection.Title}}</a>
+    </div>
+    <div id="next-prev">
+      <span>
+      {{if .PrevInSection }} {{ with .PrevInSection }}
+      &lt;-- <a href="{{ .Permalink }}">{{ .Title }}</a>
+      {{ end }} {{ end }}
+      </span>
+      <span>
+      {{if .NextInSection }} {{ with .NextInSection }}
+      <a href="{{ .Permalink }}">{{ .Title }}</a> -->
+      {{ end }}
+      {{ end }}
+      </span>
+    </div>
+  </nav>
   <div>
+  <time datetime='{{ .Date.Format "2006-01-02" }}' pubdate>
+    {{ .Date.Format "January 2, 2006" }}
+  </time>
   <h1>{{ .Title }}</h1>
   <em id="page-description">{{ .Description }}</em>
+  <br />
   </div>
-  <ul id="page-metadata-block">
-    <li id="publish-date">
-      <time datetime='{{ .Date.Format "2006-01-02" }}' pubdate>
-        {{ .Date.Format "January 2, 2006" }}
-      </time>
-    </li>
-    <li id="completion-status">completion status: <em>{{ .Params.completion_status }}</em></li>
-    <li id="epistemic-status">epistemic status: <em>{{ .Params.epistemic_status }}</em></li>
-  </ul>
-  <nav>
-    <p>
-      This page belongs to the sequence <a href="{{.CurrentSection.Permalink}}">{{.CurrentSection.Title}}</a>.
-      <br />
-    {{if .PrevInSection }} {{ with .PrevInSection }}
-    The previous page in this sequence is <a href="{{ .Permalink }}">{{ .Title }}</a>.
-    {{ end }}
-    {{ else }}
-    This is the first page in its sequence.
-    {{ end }}
-      <br />
-    {{if .NextInSection }} {{ with .NextInSection }}
-    The next page in this sequence is <a href="{{ .Permalink }}">{{ .Title }}</a>.
-    {{ end }}
-    {{ else }}
-    This is the final page in its sequence.
-    {{ end }}
-    </p>
-  </nav>
 </div>
 </header>
 {{ end }}
 <article>
-  <div id="toc">
-  <h5 style="margin: 0">Contents</h5>
+  <div id="toc" class="margin-toggle">
+  <h2>Contents</h2>
   {{ .TableOfContents }}
   </div>
   {{ .Content }}
