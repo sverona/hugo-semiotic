@@ -1,0 +1,9 @@
+{{$ordinal := .Ordinal }}
+{{- with .Parent -}}
+<label for="marginnote-{{ .Ordinal }}-{{ $ordinal }}" class="margin-toggle marginnote-number"></label>
+<input type="checkbox" id="marginnote-{{ .Ordinal }}-{{ $ordinal }}" class="margin-toggle"/>
+{{- else -}}
+<label for="marginnote-{{ .Ordinal }}" class="margin-toggle marginnote-number"></label>
+<input type="checkbox" id="marginnote-{{ .Ordinal }}" class="margin-toggle"/>
+{{- end -}}
+<span class="marginnote">{{ .Inner }}</span>
