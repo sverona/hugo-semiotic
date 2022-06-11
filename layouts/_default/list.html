@@ -22,38 +22,49 @@
 </nav>
   <div>
   {{ if (ne .CurrentSection.Title "Blogs") }}
+    <time datetime='{{ .Date.Format "2006-01-02" }}' pubdate>
+      {{ .Date.Format "January 2, 2006" }}
+    </time>
   {{ end }}
   <h1>{{ .Title }}</h1>
   <em id="page-description">{{ .Description }}</em>
   </div>
-  <ul id="page-metadata-block">
-    <li id="publish-date">
-      <time datetime='{{ .Date.Format "2006-01-02" }}' pubdate>
-        {{ .Date.Format "January 2, 2006" }}
-      </time>
-    </li>
-    <li id="completion-status">completion status: <em>{{ .Params.completion_status }}</em></li>
-    <li id="epistemic-status">epistemic status: <em>{{ .Params.epistemic_status }}</em></li>
-  </ul>
 </header>
     <article>
     {{ .Content }}
     </article>
 
   <ul class="blog-posts">
-    {{ range .Pages }}
-    <li class="blog-post">
-        <h2 style="margin: 0"><a href="{{ .Permalink }}">{{ .Title }}</a></h2>
+    {{ if (eq .CurrentSection.Title "Blogs") }}
+      {{ range .Pages }}
+      <li class="blog-post">
           <time datetime='{{ .Date.Format "2006-01-02" }}' pubdate>
             {{ .Date.Format "January 2, 2006" }}
-          </time> &mdash;
-        <em>{{ .Params.description }}</em>
-    </li>
+          </time>
+          <h2 style="margin: 0"><a href="{{ .Permalink }}">{{ .Title }}</a></h2>
+          <em>{{ .Params.description }}</em>
+      </li>
+      {{ else }}
+      <li>
+        No posts yet
+      </li>
+      {{ end }}
     {{ else }}
-    <li>
-      No posts yet
-    </li>
+      {{ range .Pages.Reverse }}
+      <li class="blog-post">
+          <time datetime='{{ .Date.Format "2006-01-02" }}' pubdate>
+            {{ .Date.Format "January 2, 2006" }}
+          </time>
+          <h2 style="margin: 0"><a href="{{ .Permalink }}">{{ .Title }}</a></h2>
+          <em>{{ .Params.description }}</em>
+      </li>
+      {{ else }}
+      <li>
+        No posts yet
+      </li>
+      {{ end }}
     {{ end }}
+
   </ul>
   {{ if .Data.Singular }}
   {{else}}
