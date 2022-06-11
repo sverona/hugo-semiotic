@@ -7,14 +7,13 @@
     <div id="next-prev">
       <span>
       {{if .PrevInSection }} {{ with .PrevInSection }}
-      &lt;-- <a href="{{ .Permalink }}">{{ .Title }}</a>
+      &twoheadleftarrow; <a href="{{ .Permalink }}">{{ .Title }}</a>
       {{ end }} {{ end }}
       </span>
       <span>
       {{if .NextInSection }} {{ with .NextInSection }}
-      <a href="{{ .Permalink }}">{{ .Title }}</a> -->
-      {{ end }}
-      {{ end }}
+      <a href="{{ .Permalink }}">{{ .Title }}</a> &twoheadrightarrow;
+      {{ end }} {{ end }}
       </span>
     </div>
   </nav>
@@ -31,7 +30,7 @@
 {{ end }}
 <article>
   <div id="toc" class="margin-toggle">
-  <h2>Contents</h2>
+  <h2>Table of Contents</h2>
   {{ .TableOfContents }}
   </div>
   {{ .Content }}
