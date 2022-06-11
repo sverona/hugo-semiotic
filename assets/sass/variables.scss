@@ -1,0 +1,17 @@
+$line-width: 750px;
+
+$gutter-width: 60px;
+
+$sidebar-width: 280px;
+$side-size: 83.3333%;
+
+$padding: 32px;
+
+/* $sidebar-width: $side-width * $side-size/100%; */
+$body-width: ($padding + $sidebar-width + $gutter-width + $line-width + $gutter-width + $sidebar-width + $padding);
+
+$mobile-breakpoint: $body-width;
+/* $mobile-breakpoint: calc(min($body-width, 100vw)); */
+
+$accent-color: #f23074;
+$drop-color: #639;
