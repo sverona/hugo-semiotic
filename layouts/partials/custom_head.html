@@ -6,9 +6,11 @@
   {{ $sidenotes := resources.Get "sass/sidenotes.scss" | resources.ToCSS }}
   <link href="{{ $style.Permalink }}" type="text/css" rel="stylesheet" />
   <link href="{{ $sidenotes.Permalink }}" type="text/css" rel="stylesheet" />
-  <link href="{{ "katex/katex.css" | absURL }}" type="text/css" rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" />
-  <script defer src="{{ "katex/katex.js" | absURL }}"></script>
-  <script defer src="{{ "katex/contrib/auto-render.js" | absURL }}"></script>
+  {{ if .Params.math }}
+    <link href="{{ "katex/katex.css" | absURL }}" type="text/css" rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" />
+    <script defer src="{{ "katex/katex.js" | absURL }}"></script>
+    <script defer src="{{ "katex/contrib/auto-render.js" | absURL }}"></script>
+  {{ end }}
 
   <script>
       document.addEventListener("DOMContentLoaded", function() {
