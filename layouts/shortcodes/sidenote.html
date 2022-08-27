@@ -1,9 +1,4 @@
-{{$ordinal := .Ordinal }}
-{{- with .Parent -}}
-<label for="sidenote-{{ .Ordinal }}-{{ $ordinal }}" class="margin-toggle sidenote-number"></label>
-<input type="checkbox" id="sidenote-{{ .Ordinal }}-{{ $ordinal }}" class="margin-toggle"/>
-{{- else -}}
-<label for="sidenote-{{ .Ordinal }}" class="margin-toggle sidenote-number"></label>
-<input type="checkbox" id="sidenote-{{ .Ordinal }}" class="margin-toggle"/>
-{{- end -}}
-<span class="sidenote">{{ .Inner }}</span>
+{{- /* The .Get 0s are here to strip trailing newlines. See https://github.com/gohugoio/hugo/issues/1753. */ -}}
+<label for="sidenote-{{ .Ordinal }}" class="margin-toggle sidenote-number {{ .Get "class" }}"></label>{{- .Get 0 -}}
+<input type="checkbox" id="sidenote-{{ .Ordinal }}" class="margin-toggle"/>{{- .Get 0 -}}
+<span class="sidenote {{ .Get "class"}}">{{- .Inner -}}</span>{{- .Get 0 -}}
