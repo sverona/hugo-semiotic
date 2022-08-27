@@ -7,9 +7,10 @@ article {
 }
 
 .sidenote, .marginnote {
+  font-size: $side-size;
   font-weight: initial;
   font-style: initial;
-  font-size: $side-size;
+  line-height: initial;
   position: relative;
   display: none;
 }
@@ -26,11 +27,8 @@ input[type="checkbox"].margin-toggle {
 }
 
 #toc {
-  .sidenote-number, .sidenote-label {
-    &::before {
-      counter-increment: none;
-      content: "";
-    }
+  .sidenote, .sidenote-number {
+    display: none;
   }
 }
 
@@ -64,6 +62,15 @@ input[type="checkbox"].margin-toggle {
   }
 }
 
+.marginnote-number.nonum::before,
+.marginnote.nonum::before {
+  content: '';
+}
+
+.marginnote.nonum {
+
+}
+
 .sidenote-number {
   font-feature-settings: "sups";
   font-variant-numeric: proportional-nums;
@@ -78,6 +85,31 @@ input[type="checkbox"].margin-toggle {
 }
 
 @media (min-width: #{$mobile-breakpoint}) {
+  .margin-right, .margin-left {
+      display: block;
+  }
+
+  .sidebar-width {
+      width: $sidebar-width;
+  }
+
+  .margin-right {
+      float: right;
+      clear: right;
+      margin-right: -($gutter-width + $sidebar-width);
+  }
+
+  .margin-left {
+      margin-left: -($gutter-width + $sidebar-width);
+      float: left;
+      clear: left;
+  }
+
+  .margin-right.margin-left {
+      float: none;
+      clear: both;
+  }
+
   .sidenote, .marginnote, .marginfigure {
     &, .margin-toggle:checked + & {
       display: block;
