@@ -1,0 +1,45 @@
+{{ if not .Params.menu }}
+<header id="front-matter" class="margin-right margin-left">
+  <nav>
+    <div id="current-section">
+      {{ if (and .IsPage (ne .CurrentSection.Title "Blogs") (ne .CurrentSection.Title .Site.Title)) }}
+        <a href="{{.CurrentSection.Permalink}}">{{.CurrentSection.Title}}</a>
+      {{ end }}
+    </div>
+    {{ if (ne .Parent.Title .Site.Title) }}
+    <div id="next-prev">
+      {{ $pagesAndSections := (where .Parent.Pages "Kind" "in" (slice "section" "page")) }}
+      <span>
+      {{if $pagesAndSections.Prev . }} {{ with $pagesAndSections.Prev . }}
+      &twoheadleftarrow; <a href="{{ .Permalink }}">{{ .Title }}</a>
+      {{ end }} {{ end }}
+      </span>
+      <span>
+      {{if $pagesAndSections.Next . }} {{ with $pagesAndSections.Next . }}
+      <a href="{{ .Permalink }}">{{ .Title }}</a> &twoheadrightarrow;
+      {{ end }} {{ end }}
+      </span>
+    </div>
+    {{ end }}
+  </nav>
+  <div style="text-align: center">
+    {{ if ne .Page.Title "Blogs" }}
+    <time datetime='{{ .Date.Format "2006-01-02" }}' pubdate>
+      {{ .Date.Format "January 2, 2006" }}
+    </time>
+    {{ end }}
+    <h1>{{ .Title }}</h1>
+    {{ if .Description }}
+    <em id="page-description">{{ .Description }}</em>
+    {{ end }}
+    {{ if (.GetTerms "tags") }}
+    <div class="page-tags">
+        {{ range (.GetTerms "tags") }}
+          <a href="{{ .Permalink }}">{{ .LinkTitle }}</a>
+        {{ end }}
+    </div> 
+    {{ end }}
+  </div>
+</div>
+</header>
+{{ end }}

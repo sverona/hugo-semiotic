@@ -1,0 +1,9 @@
+<article>
+  {{ if and (ne .TableOfContents "<nav id=\"TableOfContents\"></nav>") (ne .TableOfContents "")}}
+  <div id="toc" class="margin-toggle margin-left">
+    <h2>Table of Contents</h2>
+    {{ .TableOfContents }}
+  </div>
+  {{ end }}
+  {{ .Content }}
+</article>

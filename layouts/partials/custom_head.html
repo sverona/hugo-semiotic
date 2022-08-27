@@ -1,6 +1,7 @@
 <!-- A partial to be overwritten by the user.
   Simply place a custom_head.html into
   your local /layouts/partials-directory -->
+  <link href="{{ "fonts/fonts.css" | absURL }}" type="text/css" rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" />
   {{ $style := resources.Get "sass/style.scss" | resources.ToCSS }}
   {{ $sidenotes := resources.Get "sass/sidenotes.scss" | resources.ToCSS }}
   <link href="{{ $style.Permalink }}" type="text/css" rel="stylesheet" />
@@ -16,8 +17,32 @@
                 {left: "\\(", right: "\\)", display: false},
                 {left: "\\begin{align}", right: "\\begin{align}", display: true},
                 {left: "\\[", right: "\\]", display: true}
-            ]
+            ],
+            // Add \label and \ref support.
+            // See https://github.com/KaTeX/KaTeX/issues/2003
+            trust: (context) => ['\\htmlId', '\\href'].includes(context.command),
+            macros: {
+              "\\eqref": "\\href{###1}{(\\text{#1})}",
+              "\\ref": "\\href{###1}{\\text{#1}}",
+              "\\label": "\\htmlId{#1}{}"
+            }
           });
       });
-
   </script>
+
+  <script type="text/javascript">
+    document.addEventListener("DOMContentLoaded", () => {
+      var els = document.getElementsByClassName("highlight");
+      for (var i = 0; i < els.length; i++) {
+        if (els[i].title.length) {
+          var newNode = document.createElement("code");
+          var textNode = document.createTextNode(els[i].title);
+          newNode.appendChild(textNode);
+          newNode.classList.add("highlight-title");
+          var pre = els[i].querySelector('pre');
+          pre.appendChild(newNode);
+        }
+      }
+    });
+  </script>
+

@@ -5,34 +5,8 @@
     <a href="{{ "/blog" | relURL }}">Remove filter</a>
   </small>
   {{ end }}
-  <header id="front-matter">
-<nav id="sequence-nav">
-  <div id="next-prev">
-  {{ if .NextInSection }} {{ with .NextInSection }}
-    <div id="next"><a href="{{.Permalink}}">{{ .Title }}</a></div>
-  {{ end }} {{ else }}
-    <div></div>
-  {{ end }}
-  {{ if .PrevInSection }} {{ with .PrevInSection }}
-    <div id="prev"><a href="{{.Permalink}}">{{ .Title }}</a></div>
-  {{ end }} {{ else }}
-    <div></div>
-  {{ end }}
-  </div>
-</nav>
-  <div>
-  {{ if (ne .CurrentSection.Title "Blogs") }}
-    <time datetime='{{ .Date.Format "2006-01-02" }}' pubdate>
-      {{ .Date.Format "January 2, 2006" }}
-    </time>
-  {{ end }}
-  <h1>{{ .Title }}</h1>
-  <em id="page-description">{{ .Description }}</em>
-  </div>
-</header>
-    <article>
-    {{ .Content }}
-    </article>
+  {{- partial "frontmatter.html" . -}}
+  {{- partial "content.html" . -}}
 
   <ul class="blog-posts">
     {{ if (eq .CurrentSection.Title "Blogs") }}
@@ -64,18 +38,5 @@
       </li>
       {{ end }}
     {{ end }}
-
   </ul>
-  {{ if .Data.Singular }}
-  {{else}}
-    <!--
-    <small>
-      <div>
-        {{ range .Site.Taxonomies.tags }}
-        <a href="{{ .Page.Permalink }}">#{{ .Page.Title }}</a>&nbsp;
-        {{ end }}
-      </div>
-    </small>
-    -->
-    {{ end }}
 {{ end }}

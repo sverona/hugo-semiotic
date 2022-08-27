@@ -1,46 +1,4 @@
 {{ define "main" }}
-{{ if not .Params.menu }} <header id="front-matter">
-  <nav>
-    <div id="current-section">
-      <a href="{{.CurrentSection.Permalink}}">{{.CurrentSection.Title}}</a>
-    </div>
-    <div id="next-prev">
-      <span>
-      {{if .PrevInSection }} {{ with .PrevInSection }}
-      &twoheadleftarrow; <a href="{{ .Permalink }}">{{ .Title }}</a>
-      {{ end }} {{ end }}
-      </span>
-      <span>
-      {{if .NextInSection }} {{ with .NextInSection }}
-      <a href="{{ .Permalink }}">{{ .Title }}</a> &twoheadrightarrow;
-      {{ end }} {{ end }}
-      </span>
-    </div>
-  </nav>
-  <div>
-  <time datetime='{{ .Date.Format "2006-01-02" }}' pubdate>
-    {{ .Date.Format "January 2, 2006" }}
-  </time>
-  <h1>{{ .Title }}</h1>
-  <em id="page-description">{{ .Description }}</em>
-  <br />
-  </div>
-</div>
-</header>
-{{ end }}
-<article>
-  <div id="toc" class="margin-toggle">
-  <h2>Table of Contents</h2>
-  {{ .TableOfContents }}
-  </div>
-  {{ .Content }}
-</article>
-<!--
-<div class="page-tags">
-    {{ range (.GetTerms "tags") }}
-      <a href="{{ .Permalink }}">{{ .LinkTitle }}</a>,
-    {{ end }}
-</div> 
--->
-<hr />
+{{- partial "frontmatter.html" . -}}
+{{- partial "content.html" . -}}
 {{ end }}
