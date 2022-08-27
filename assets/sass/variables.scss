@@ -1,17 +1,21 @@
-$line-width: 750px;
-
+/*
+$line-width: 600px;
 $gutter-width: 60px;
-
 $sidebar-width: 280px;
-$side-size: 83.3333%;
+$body-margin: 32px;
+*/
 
-$padding: 32px;
+$line-width: 40rem;
+$gutter-width: 4rem;
+$sidebar-width: 15rem;
+$body-margin: 2rem;
 
-/* $sidebar-width: $side-width * $side-size/100%; */
-$body-width: ($padding + $sidebar-width + $gutter-width + $line-width + $gutter-width + $sidebar-width + $padding);
+$side-size: .83rem; 
+
+
+$body-width: ($body-margin + $sidebar-width + $gutter-width + $line-width + $gutter-width + $sidebar-width + $body-margin);
 
 $mobile-breakpoint: $body-width;
-/* $mobile-breakpoint: calc(min($body-width, 100vw)); */
 
 $accent-color: #f23074;
 $drop-color: #639;

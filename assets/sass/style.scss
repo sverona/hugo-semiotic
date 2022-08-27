@@ -1,9 +1,7 @@
-@import 'fonts';
 @import 'variables';
 
 html {
-  font-family: 'Source Serif 4';
-  font-size: 20px;
+  font-family: 'Source Serif', serif;
 }
 
 body {
@@ -20,23 +18,14 @@ main {
 
 h1, h2, h3, h4, h5, h6 {
   line-height: 1.4;
-  font-weight: 600;
-}
-
-h2, h3, h4, h5, h6 {
-  margin-block-end: -0.75rem;
-}
-
-h1 {
   margin-block: 0;
 }
 
-h2 {
-  font-size: 1.3rem;
-}
-
-h3 {
-  font-size: 1.1rem;
+article {
+  h2, h3, h4, h5, h6 {
+    margin-block: 2rem -0.5rem;
+    font-style: italic;
+  }
 }
 
 main {
@@ -62,7 +51,7 @@ body > header {
 }
 
 #brand {
-  font-weight: 600;
+  font-weight: bold;
   color: $accent-color;
   text-shadow: 1px 1px rgba(0, 0, 0, 0.3);
   font-style: italic;
@@ -71,51 +60,84 @@ body > header {
 }
 
 ul {
-  list-style-type: "\2014    "
+  list-style-type: square;
 }
 
 nav ul {
   list-style-type: none;
 }
 
-#toc ol, #toc ul {
-  font-weight: 600;
-  
-  ol, ul {
-    font-weight: initial;
-    padding: 0.5ch 3ch;
-    font-size: 90%;
-  }
-
-  ul {
-    list-style-type: none;
-  }
-
-  ol {
-    list-style-type: lower-roman;
-  }
+pre {
+  font-size: 16px;
 }
 
+.highlight {
+  position: relative;
+}
 
-pre {
-  font-size: calc(12px / .95);
+.highlight-title {
+  position: absolute;
+  right: 0;
+  top: 0;
+  padding-inline: 1ch;
+  background-color: black;
+  color: white;
+  font-size: small;
 }
 
 .katex {
   font-size: 110% !important;
 }
 
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+th, td {
+  padding: 5px;
+  border: 1px solid #ccc;
+}
+
+tr:nth-child(even) {
+  background-color: #eee;
+}
+
+th {
+  font-weight: bold;
+  text-align: left;
+}
+
 #toc {
-  margin-block-end: 2rem;
+  display: none;
 
   nav > ol, nav > ul {
     padding: 0;
+  }
+
+  ol, ul {
+    font-weight: bold;
+    
+    ol, ul {
+      font-weight: initial;
+      padding: 0.5ch 3ch;
+      font-size: 90%;
+    }
+
+    ul {
+      list-style-type: none;
+    }
+
+    ol {
+      list-style-type: lower-roman;
+    }
   }
 
   h2 {
     font-variant-caps: all-small-caps;
     letter-spacing: 0.07rem;
     font-size: 1rem;
+    font-style: normal;
     font-weight: 400;
     margin: 0;
   }
@@ -123,14 +145,17 @@ pre {
 
 @media (min-width: #{$mobile-breakpoint}) {
   #toc {
+    display: block;
+    padding-block-end: 2rem;
+    padding-right: $gutter-width;
+
+    background: linear-gradient(to bottom, rgba(255, 255, 255, 1), rgba(255, 255, 255, 1) calc(100% - 2rem), rgba(255, 255, 255, 0));
+
     width: $sidebar-width;
     font-size: $side-size;
-    margin-left: -($gutter-width + $sidebar-width);
-    float: left;
-    clear: left;
 
     position: sticky;
-    top: $padding;
+    top: $body-margin;
   }
 }
 
@@ -148,8 +173,7 @@ pre {
 }
 
 code {
-  font-family: 'IBM Plex Mono';
-  font-size: 95%;
+  font-family: 'Source Code Pro';
   font-weight: 400;
 }
 
@@ -157,7 +181,9 @@ pre {
   white-space: pre-wrap;
   padding: 0.5rem;
 
-  border: 1px solid #aaa; 
+  font-size: smaller;
+
+  border: 1px solid black;
 }
 
 time {
@@ -188,10 +214,10 @@ time {
 }
 
 footer {
-  font-variant: all-small-caps;
-  font-size: 75%;
-  color: #777;
   text-align: center;
+  font-variant: all-small-caps;
+  font-size: smaller; 
+  color: #777;
 }
 
 figcaption {
@@ -212,6 +238,30 @@ figure img {
   grid-gap: 1rem;
 }
 
+.page-tags {
+  display: flex;
+  flex-wrap: wrap;
+  grid-gap: 1ch;
+
+  justify-content: center;
+
+  margin-block: 1.6rem ;
+
+  a {
+    font-size: smaller;
+    font-family: 'Source Code Pro';
+    text-decoration: none;
+    border: 1px solid black;
+    padding-inline: 0.5ch;
+    white-space: nowrap;
+
+    &:hover {
+      color: white;
+      background-color: black;
+    }
+  }
+}
+
 $environments: conjecture definition theorem lemma proposition proposition example corollary;
 
 article {
@@ -224,13 +274,11 @@ article {
 
 @each $env in $environments {
   .#{$env} {
-    border: 1px solid #ccc;
-    box-shadow: 1px 1px #444;
-    padding: 1ch;
+    border: 1px solid black;
+    padding: 1rem;
 
     counter-increment: $env;
     margin-block: 1rem;
-    margin-inline: -1ch;
 
     &::before {
       font-variant-caps: all-small-caps;
@@ -241,6 +289,11 @@ article {
     
     p:first-child {
       display: inline;
+    }
+
+    p:last-child,
+    p:last-child .katex-display {
+      margin-bottom: 0;
     }
   }
 }
@@ -273,10 +326,6 @@ article {
     &:nth-child(2) {
       display: inline-block;
       margin-block-end: 0;
-    }
-
-    > span:last-child .katex-display {
-      margin: 1em 0 calc(-1.6em * 1.1);
     }
   }
 }
