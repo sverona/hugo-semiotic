@@ -1,23 +1,25 @@
 <!-- A partial to be overwritten by the user.
   Simply place a custom_head.html into
   your local /layouts/partials-directory -->
-  <link href="{{ "fonts/fonts.css" | absURL }}" type="text/css" rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" />
+  <link href="{{ "fonts/fonts.css" | absURL }}" type="text/css" rel="stylesheet" />
   {{ $style := resources.Get "sass/style.scss" | resources.ToCSS }}
   {{ $sidenotes := resources.Get "sass/sidenotes.scss" | resources.ToCSS }}
   <link href="{{ $style.Permalink }}" type="text/css" rel="stylesheet" />
   <link href="{{ $sidenotes.Permalink }}" type="text/css" rel="stylesheet" />
   {{ if .Params.math }}
-    <link href="{{ "katex/katex.css" | absURL }}" type="text/css" rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" />
+    <link href="{{ "katex/katex.min.css" | absURL }}" type="text/css" rel="stylesheet" />
     <script defer src="{{ "katex/katex.js" | absURL }}"></script>
     <script defer src="{{ "katex/contrib/auto-render.js" | absURL }}"></script>
   {{ end }}
 
   <script>
-      document.addEventListener("DOMContentLoaded", function() {
+    {{ "// @license magnet:?xt=urn:btih:1f739d935676111cfff4b4693e3816e664797050&dn=gpl-3.0.txt GPL-3.0" | safeJS }}
+
+    {{ if .Params.math }}
+    document.addEventListener("DOMContentLoaded", () => {
           renderMathInElement(document.body, {
             delimiters: [
                 {left: "\\(", right: "\\)", display: false},
-                {left: "\\begin{align}", right: "\\begin{align}", display: true},
                 {left: "\\[", right: "\\]", display: true}
             ],
             // Add \label and \ref support.
@@ -28,11 +30,10 @@
               "\\ref": "\\href{###1}{\\text{#1}}",
               "\\label": "\\htmlId{#1}{}"
             }
-          });
+        })
       });
-  </script>
+    {{ end }}
 
-  <script type="text/javascript">
     document.addEventListener("DOMContentLoaded", () => {
       var els = document.getElementsByClassName("highlight");
       for (var i = 0; i < els.length; i++) {
@@ -46,5 +47,6 @@
         }
       }
     });
+    {{ "// @license-end" | safeJS }}
   </script>
 
