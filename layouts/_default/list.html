@@ -5,6 +5,7 @@
     <a href="{{ "/blog" | relURL }}">Remove filter</a>
   </small>
   {{ end }}
+  {{- partial "noscript.html" . -}}
   {{- partial "frontmatter.html" . -}}
   {{- partial "content.html" . -}}
 
