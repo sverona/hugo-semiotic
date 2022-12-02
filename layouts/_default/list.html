@@ -9,35 +9,13 @@
   {{- partial "frontmatter.html" . -}}
   {{- partial "content.html" . -}}
 
-  <ul class="blog-posts">
-    {{ if (eq .CurrentSection.Title "Blogs") }}
-      {{ range .Pages }}
-      <li class="blog-post">
-          <time datetime='{{ .Date.Format "2006-01-02" }}' pubdate>
-            {{ .Date.Format "January 2, 2006" }}
-          </time>
-          <h2 style="margin: 0"><a href="{{ .Permalink }}">{{ .Title }}</a></h2>
-          <em>{{ .Params.description }}</em>
-      </li>
-      {{ else }}
-      <li>
-        No posts yet
-      </li>
-      {{ end }}
-    {{ else }}
-      {{ range .Pages.Reverse }}
-      <li class="blog-post">
-          <time datetime='{{ .Date.Format "2006-01-02" }}' pubdate>
-            {{ .Date.Format "January 2, 2006" }}
-          </time>
-          <h2 style="margin: 0"><a href="{{ .Permalink }}">{{ .Title }}</a></h2>
-          <em>{{ .Params.description }}</em>
-      </li>
-      {{ else }}
-      <li>
-        No posts yet
-      </li>
-      {{ end }}
-    {{ end }}
-  </ul>
+  {{ range .Pages }}
+  {{ if .IsPage }}
+  <div class="blog">
+    <strong><a href="{{ .Permalink }}">{{ .Title }}</a></strong>
+    &mdash;
+    <time>{{ .Date.Format "January 2, 2006" }}</time>
+  </div>
+  {{ end }}
+  {{ end }}
 {{ end }}

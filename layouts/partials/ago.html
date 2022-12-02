@@ -1,0 +1,9 @@
+{{ $daysAgo := div (sub now.Unix .date.Unix) 86400 }}
+{{ $monthsAgo := div (sub now.Unix .date.Unix) (mul 86400 30) }}
+{{ if eq $daysAgo 0 }}
+today
+{{ else if lt $daysAgo 30 }}
+{{ $daysAgo }} {{ cond (eq $daysAgo 1) "day" "days" }} ago
+{{ else }}
+{{ $monthsAgo }} {{ cond (eq $monthsAgo 1) "month" "months" }} ago
+{{ end }}
