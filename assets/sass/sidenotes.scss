@@ -84,6 +84,15 @@ input[type="checkbox"].margin-toggle {
   line-height: 1;
 }
 
+.flex {
+  display: flex;
+
+}
+
+figure:not(.fullwidth) figcaption {
+  text-align: center;
+}
+
 @media (min-width: #{$mobile-breakpoint}) {
   .margin-right, .margin-left {
       display: block;
